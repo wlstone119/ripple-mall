@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<bean id="newsPath" class="java.lang.String">
+		<constructor-arg value="/Users/stone/news" />
+	</bean>
+
+	<util:constant id="LUCENE_VERSION"
+		static-field="org.apache.lucene.util.Version.LUCENE_4_9" />
+
+	<bean id="directory" class="org.apache.lucene.store.SimpleFSDirectory">
+		<constructor-arg>
+			<bean class="java.io.File">
+				<constructor-arg value="/Users/stone/news/index" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="analyzer" class="org.wltea.analyzer.lucene.IKAnalyzer">
+		<constructor-arg value="true" />
+	</bean>
+
+	<bean id="indexWriter" class="org.apache.lucene.index.IndexWriter">
+		<constructor-arg name="d" ref="directory" />
+		<constructor-arg name="conf">
+			<bean class="org.apache.lucene.index.IndexWriterConfig">
+				<constructor-arg name="matchVersion" ref="LUCENE_VERSION" />
+				<constructor-arg name="analyzer" ref="analyzer" />
+				<property name="openMode">
+					<util:constant static-field="org.apache.lucene.index.IndexWriterConfig.OpenMode.CREATE_OR_APPEND" />
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- <bean id="indexSearcher" class="org.apache.lucene.search.IndexSearcher">
+		<constructor-arg name="r">
+			<bean class="org.apache.lucene.index.DirectoryReader"
+				factory-method="open">
+				<constructor-arg name="directory" ref="directory" />
+			</bean>
+		</constructor-arg>
+	</bean> -->
+</beans>
