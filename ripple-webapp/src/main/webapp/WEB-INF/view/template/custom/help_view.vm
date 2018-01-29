@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>E6Mall在线商城</title>
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/global.css" rel="stylesheet" type="text/css" />
+<link href="styles/inside.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="Box-top">
+  <div id="Box-top-nav"><a onfocus="this.blur()" href="member/">我的账户</a><a onfocus="this.blur()" href="#">每日特惠</a><a onfocus="this.blur()" href="#">断码专区</a><a onfocus="this.blur()" href="#">积分回馈</a><a onfocus="this.blur()" href="#">论坛</a><a onfocus="this.blur()" href="#">网站联盟</a><a onfocus="this.blur()" href="#">帮助中心</a><a onfocus="this.blur()" href="#"><img src="images/Home-box_01.jpg" width="70" height="16" alt="在线客服" /></a></div>
+  <div id="Box-top-logo">
+    <h1><a onfocus="this.blur()" href="#"><img src="images/Home-box_03.jpg" alt="E6Mall 铱王星 在线商城" width="244" height="32" /></a></h1>
+    <p class="Box-top-login">您好，欢迎光临E6Mall 铱王星。#if( $session.getAttribute("member") )<a href="member/index.htm">我的E6Mall</a>#else<a onfocus="this.blur()" href="login.htm">登录</a> | <a onfocus="this.blur()" href="register.htm">注册</a>#end</p>
+    <p class="Box-top-tel"><img src="images/Home-box_05.jpg" alt="订购热线（免长途费）" width="122" height="14" /></p>
+    <div class="clear"></div>
+  </div>
+  <!------------------------nav------------------------>
+  <div id="Box-nav">
+    <ul>
+      <li><a onfocus="this.blur()" href="index.htm">首页</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=2ffdf86fa01f44d9a5ee997a4cba6426">潮流服饰</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=87e9d2853d7b48f1a7867e3f87f44356">美容护肤</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=702742dcbf4b4467972e6c4ef46d6316">手机数码</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=833fb464077d4a77a2a4553212193f76">珠宝饰品</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=10ff85acdec645349dd6a52e3f0a58c8">食品保健</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=dc1a3f5f11e94de3a82dce52be404483">图书音像</a></li>
+    </ul>
+    <p><img src="images/Home-box_07.jpg" width="187" height="26" /></p>
+    <div class="clear"></div>
+  </div>
+  <div id="Box-menu-left">
+    <div class="Box-sort white"><span>热门分类：</span><a href="browse.htm?c=6e3630e75e4243c1a73f7ca1c4f688b1">手机</a><a href="browse.htm?c=99326ef285374989828b1843aa803aae">T恤</a><a href="browse.htm?c=da535bfc27224421bfb0f9c3d0937e62">连衣裙</a><a href="browse.htm?c=12deb536409b48678359089c73c447b9">雪纺裙</a><a href="browse.htm?c=87e9d2853d7b48f1a7867e3f87f44356">玫琳凯</a><span class="orange">特别关注：</span><a href="goods.htm?c=702742dcbf4b4467972e6c4ef46d6316&gs=00155e38873c4445924187ec44dd4005">IPHONE四代无锁版</a>|<a href="goods.htm?c=702742dcbf4b4467972e6c4ef46d6316&gs=7ab7193514dc4a0c8878dcfd0fa91479">诺基亚E71售1650元</a>|<a href="#">会员积分换购</a></div>
+    <div class="Box-search">
+      <form action="browse.htm" method="post" id="search">
+        <label>
+          <input name="keyword" type="text" id="keyword" value="$!{keyword}">
+        </label>
+        <label>
+          <select name="c" id="c">
+            <option value="">所有分类</option>
+            #foreach( $item in $caterootlist )
+            <option value="$!{item.id}" #if($category.id==$item.id)selected="selected"#end>$!{item.name}</option>
+            #end
+          </select>
+        </label>
+        <input name="button" type="submit" id="button" value="搜索" class="button" />
+        <label>热门关键词:<a href="browse.htm?c=&&keyword=手机">手机</a><a href="browse.htm?c=&&keyword=资生堂">资生堂</a><a href="browse.htm?c=&&keyword=玫琳凯">玫琳凯</a><a href="browse.htm?c=&&keyword=T恤">T恤</a><a href="browse.htm?c=&&keyword=裙子">裙子</a><a href="browse.htm?c=&&keyword=歌莉娅">歌莉娅</a><a href="browse.htm?c=&&keyword=玉兰油">玉兰油</a></label>
+      </form>
+    </div>
+  </div>
+  <div id="Box-menu-right"><img src="images/Home-box_02.jpg" width="17" height="16" class="icon" /><a href="my_scart.htm" title="订单金额：$!{cart.getCartAmount()}元">购物车中有 <b>$!{cart.getCartNumber()}</b> 件商品</a><a href="my_scart.htm"><img src="images/Home-box_11.jpg" width="53" height="19" border="0" class="button-b" /></a></div>
+  <div class="clear"></div>
+</div>
+<div class="Box-banner"><img src="images/Home-box_15.jpg" width="980" height="60" /></div>
+<!------------------------内容------------------------>
+<div id="Main-box">
+  <!------------------------左边内容------------------------>
+  <div class="Main-left left">
+    <h2>帮助中心</h2>
+    <div class="Main-left-subNav">
+      #foreach( $item in $map.get("A") )
+      <h3>$!{item.name}</h3>
+      <ul>
+        #foreach( $docitem in $item.documents )
+        <li><a href="?c=help&amp;t=v&amp;d=$!{docitem.id}">$!{docitem.title}</a> </li>
+        #end
+      </ul>
+      #end
+    </div>
+    <p><img src="images/Main-img-01.jpg" width="200" height="303" /></p>
+  </div>
+  <!------------------------左边内容------------------------>
+  <!------------------------右边内容------------------------>
+  <div class="Main-right right">
+    <p class="Main-line"><a href="#">首页</a> > <a href="#">帮助</a> > $!document.title</p>
+     <!------------------------标签------------------------>
+     <!------------------------标签------------------------>
+    <div class="Main-products">
+      <p>$!document.content</p>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!------------------------右边内容------------------------>
+  <div class="clear"></div>
+</div>
+<!------------------------底部------------------------>
+<div id="Box-bottom">
+  <div class="Box-bottom-menu">
+    #foreach( $item in $map.get("G_A") )
+    <dl>
+      <dt><strong>$!{item.name}</strong></dt>
+      #foreach( $docitem in $item.documents )
+      <dd><a href="?c=help&amp;t=v&amp;d=$!{docitem.id}">$!{docitem.title}</a></dd>
+      #end
+    </dl>
+    #end
+    <dl class="Box-Nosty">
+      <dt><strong>订购热线</strong>(免长途费)</dt>
+      <dd><strong>400 600 6888</strong></dd>
+      <dt><strong>客户服务热线</strong>(免长途费)</dt>
+      <dd><strong>400 650 7099</strong></dd>
+    </dl>
+    <div class="clear"></div>
+  </div>
+  <p class="bZp"><a href="#"><img src="images/service01.jpg" width="157" height="55" /></a><a href="#"><img src="images/service02.jpg" width="178" height="55" /></a><a href="#"><img src="images/service03.jpg" width="198" height="55" /></a></p>
+  <p><a href="#">首页</a> | <a href="#">公司简介</a> | <a href="#">隐私申明</a> | <a href="#">团购优惠</a> | <a href="#">合作专区</a> | 加入<a href="3">E6Mall</a> | <a href="#">投诉与建议</a></p>
+  <p>Copyright 2007 - 2010 e6mall.com All Rights Reserved 粤ICP备06082025号</p>
+  <div class="clear"></div>
+</div>
+</body>
+</html>

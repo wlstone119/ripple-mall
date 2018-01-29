@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stone.ripple.dao.music.SongDoMapper">
+  <resultMap id="BaseResultMap" type="com.stone.ripple.dal.pojo.music.SongDo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="c_time" jdbcType="TIMESTAMP" property="cTime" />
+    <result column="c_user" jdbcType="VARCHAR" property="cUser" />
+    <result column="m_time" jdbcType="TIMESTAMP" property="mTime" />
+    <result column="m_user" jdbcType="VARCHAR" property="mUser" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="song_author" jdbcType="VARCHAR" property="songAuthor" />
+    <result column="song_album" jdbcType="VARCHAR" property="songAlbum" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="song_album_pic" jdbcType="VARCHAR" property="songAlbumPic" />
+    <result column="song_duration" jdbcType="VARCHAR" property="songDuration" />
+    <result column="song_url" jdbcType="VARCHAR" property="songUrl" />
+    <result column="resourcepath" jdbcType="VARCHAR" property="resourcepath" />
+    <result column="song_sheet" jdbcType="VARCHAR" property="songSheet" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="resource" jdbcType="VARCHAR" property="resource" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, c_time, c_user, m_time, m_user, name, song_author, song_album, type, status, 
+    song_album_pic, song_duration, song_url, resourcepath, song_sheet, sort, resource
+  </sql>
+  <select id="selectByExample" parameterType="com.stone.ripple.dal.pojo.music.SongDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from rp_songs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rp_songs
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from rp_songs
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stone.ripple.dal.pojo.music.SongDoExample">
+    delete from rp_songs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stone.ripple.dal.pojo.music.SongDo">
+    insert into rp_songs (id, c_time, c_user, 
+      m_time, m_user, name, 
+      song_author, song_album, type, 
+      status, song_album_pic, song_duration, 
+      song_url, resourcepath, song_sheet, 
+      sort, resource)
+    values (#{id,jdbcType=BIGINT}, #{cTime,jdbcType=TIMESTAMP}, #{cUser,jdbcType=VARCHAR}, 
+      #{mTime,jdbcType=TIMESTAMP}, #{mUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{songAuthor,jdbcType=VARCHAR}, #{songAlbum,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{songAlbumPic,jdbcType=VARCHAR}, #{songDuration,jdbcType=VARCHAR}, 
+      #{songUrl,jdbcType=VARCHAR}, #{resourcepath,jdbcType=VARCHAR}, #{songSheet,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{resource,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.ripple.dal.pojo.music.SongDo">
+    insert into rp_songs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cTime != null">
+        c_time,
+      </if>
+      <if test="cUser != null">
+        c_user,
+      </if>
+      <if test="mTime != null">
+        m_time,
+      </if>
+      <if test="mUser != null">
+        m_user,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="songAuthor != null">
+        song_author,
+      </if>
+      <if test="songAlbum != null">
+        song_album,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="songAlbumPic != null">
+        song_album_pic,
+      </if>
+      <if test="songDuration != null">
+        song_duration,
+      </if>
+      <if test="songUrl != null">
+        song_url,
+      </if>
+      <if test="resourcepath != null">
+        resourcepath,
+      </if>
+      <if test="songSheet != null">
+        song_sheet,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="resource != null">
+        resource,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cTime != null">
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null">
+        #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mTime != null">
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mUser != null">
+        #{mUser,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="songAuthor != null">
+        #{songAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="songAlbum != null">
+        #{songAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="songAlbumPic != null">
+        #{songAlbumPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDuration != null">
+        #{songDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="songUrl != null">
+        #{songUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcepath != null">
+        #{resourcepath,jdbcType=VARCHAR},
+      </if>
+      <if test="songSheet != null">
+        #{songSheet,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="resource != null">
+        #{resource,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stone.ripple.dal.pojo.music.SongDoExample" resultType="java.lang.Long">
+    select count(*) from rp_songs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rp_songs
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.cTime != null">
+        c_time = #{record.cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cUser != null">
+        c_user = #{record.cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mTime != null">
+        m_time = #{record.mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mUser != null">
+        m_user = #{record.mUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songAuthor != null">
+        song_author = #{record.songAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songAlbum != null">
+        song_album = #{record.songAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songAlbumPic != null">
+        song_album_pic = #{record.songAlbumPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songDuration != null">
+        song_duration = #{record.songDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songUrl != null">
+        song_url = #{record.songUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resourcepath != null">
+        resourcepath = #{record.resourcepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songSheet != null">
+        song_sheet = #{record.songSheet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.resource != null">
+        resource = #{record.resource,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rp_songs
+    set id = #{record.id,jdbcType=BIGINT},
+      c_time = #{record.cTime,jdbcType=TIMESTAMP},
+      c_user = #{record.cUser,jdbcType=VARCHAR},
+      m_time = #{record.mTime,jdbcType=TIMESTAMP},
+      m_user = #{record.mUser,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      song_author = #{record.songAuthor,jdbcType=VARCHAR},
+      song_album = #{record.songAlbum,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      song_album_pic = #{record.songAlbumPic,jdbcType=VARCHAR},
+      song_duration = #{record.songDuration,jdbcType=VARCHAR},
+      song_url = #{record.songUrl,jdbcType=VARCHAR},
+      resourcepath = #{record.resourcepath,jdbcType=VARCHAR},
+      song_sheet = #{record.songSheet,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      resource = #{record.resource,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.ripple.dal.pojo.music.SongDo">
+    update rp_songs
+    <set>
+      <if test="cTime != null">
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cUser != null">
+        c_user = #{cUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mTime != null">
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mUser != null">
+        m_user = #{mUser,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="songAuthor != null">
+        song_author = #{songAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="songAlbum != null">
+        song_album = #{songAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="songAlbumPic != null">
+        song_album_pic = #{songAlbumPic,jdbcType=VARCHAR},
+      </if>
+      <if test="songDuration != null">
+        song_duration = #{songDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="songUrl != null">
+        song_url = #{songUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcepath != null">
+        resourcepath = #{resourcepath,jdbcType=VARCHAR},
+      </if>
+      <if test="songSheet != null">
+        song_sheet = #{songSheet,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="resource != null">
+        resource = #{resource,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.ripple.dal.pojo.music.SongDo">
+    update rp_songs
+    set c_time = #{cTime,jdbcType=TIMESTAMP},
+      c_user = #{cUser,jdbcType=VARCHAR},
+      m_time = #{mTime,jdbcType=TIMESTAMP},
+      m_user = #{mUser,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      song_author = #{songAuthor,jdbcType=VARCHAR},
+      song_album = #{songAlbum,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      song_album_pic = #{songAlbumPic,jdbcType=VARCHAR},
+      song_duration = #{songDuration,jdbcType=VARCHAR},
+      song_url = #{songUrl,jdbcType=VARCHAR},
+      resourcepath = #{resourcepath,jdbcType=VARCHAR},
+      song_sheet = #{songSheet,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      resource = #{resource,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getSongList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rp_songs
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getSongList2" parameterType="com.stone.ripple.dal.pojo.music.SongDoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from rp_songs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

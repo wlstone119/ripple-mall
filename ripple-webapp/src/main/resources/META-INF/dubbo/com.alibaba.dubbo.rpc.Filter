@@ -1,0 +1,2 @@
+dubboProviderFilter=com.stone.ripple.filter.DubboProviderFilter
+dubboConsumerFilter=com.stone.ripple.filter.DubboConsumerFilter

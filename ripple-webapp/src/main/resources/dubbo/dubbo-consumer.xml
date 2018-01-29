@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-autowire="byName">
+
+	<dubbo:application name="${spring.dubbo.application.name}"
+		default="false" />
+	<dubbo:registry server="${spring.dubbo.registry.server}"
+		protocol="${spring.dubbo.registry.protocol}" address="${spring.dubbo.registry.address}" />
+	<dubbo:consumer timeout="${spring.dubbo.consumer.timeout}"
+		check="${spring.dubbo.consumer.check}" retries="${spring.dubbo.consumer.retries}"
+		filter="dubboConsumerFilter" />
+
+	<dubbo:reference id="helloFacade" interface="com.stone.ripple.facade.HelloFacade"></dubbo:reference>
+	
+	<dubbo:reference id="validationFacade" interface="com.stone.ripple.facade.ValidationFacade" validation="true"></dubbo:reference>
+	<dubbo:reference id="dataAnalyseFacadeService" interface="com.weidai.clalarm.facade.api.DataAnalyseFacadeService"></dubbo:reference>
+</beans>

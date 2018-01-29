@@ -1,0 +1,299 @@
+<div class="banner">
+	<div class="slideshow white-bg">
+		<div class="slider-banner-container">
+			<div class="slider-banner-2 bullets-with-bg">
+				<ul>
+					<!-- slide 1 start -->
+					<li data-transition="fade" data-slotamount="7"
+						data-masterspeed="1000" data-saveperformance="on"
+						data-title="Slide 1">
+						<!-- main image --> <img src="images/Home-box-05.jpg"
+						alt="slidebg1" data-bgposition="center top" data-bgfit="cover"
+						data-bgrepeat="no-repeat"> <!-- LAYER NR. 1 -->
+						<div class="tp-caption very_large_text sfl tp-resizeme"
+							data-x="center" data-y="70" data-speed="600" data-start="0"
+							data-end="10000" data-endspeed="600">fdsafds</div> <!-- LAYER NR. 2 -->
+						<div
+							class="tp-caption small_thin_white sfr text-center tp-resizeme"
+							data-x="center" data-y="170" data-speed="600" data-start="0"
+							data-end="10000" data-endspeed="600">fjdhalkfdhsl</div> <!-- LAYER NR. 3 -->
+						<div class="tp-caption tp-resizeme sfl" data-x="center"
+							data-y="300" data-speed="600" data-start="0" data-end="10000"
+							data-endspeed="600">
+							<a href="index.htm" class="btn btn-default btn-lg"><i
+								class="fa fa-angle-double-right pl-10"></i></a>
+						</div>
+					</li>
+					<!-- slide 1 end -->
+
+					<!-- slide 2 start -->
+					<li data-transition="fade" data-slotamount="7"
+						data-masterspeed="1000" data-saveperformance="on"
+						data-title="Slide 2" class="dark-translucent-bg">
+						<!-- main image --> <img src="images/Home-box-01.jpg"
+						alt="slidebg1" data-bgposition="center top" data-bgfit="cover"
+						data-bgrepeat="no-repeat"> <!-- LAYER NR. 1 -->
+						<div class="tp-caption very_large_text sfl tp-resizeme"
+							data-x="center" data-y="70" data-speed="600" data-start="0"
+							data-end="10000" data-endspeed="600">iDea - Powerful
+							Bootstrap Theme</div> <!-- LAYER NR. 2 -->
+						<div
+							class="tp-caption sfr small_thin_white text-center tp-resizeme"
+							data-x="center" data-y="170" data-speed="600" data-start="0"
+							data-end="10000" data-endspeed="600">
+							Quia dolorum consectetur doloremque a aliquam ullam labore,
+							ducimus adipisci iste animi <br> natus asperiores sequi
+							assumenda minima blanditiis. Culpa quis consectetur ratione.
+						</div> <!-- LAYER NR. 3 -->
+						<div class="tp-caption sfl tp-resizeme" data-x="center"
+							data-y="300" data-speed="600" data-start="0" data-end="10000"
+							data-endspeed="600">
+							<a href="page-services.html" class="btn btn-default btn-lg">Tell
+								Me More <i class="fa fa-angle-double-right pl-10"></i>
+							</a>
+						</div>
+
+					</li>
+					<!-- slide 2 end -->
+
+				</ul>
+			</div>
+		</div>
+		<!-- slider revolution end -->
+
+	</div>
+	<!-- slideshow end -->
+</div>
+
+<div class="section clearfix object-non-visible"
+	data-animation-effect="fadeInUpSmall" data-effect-delay="300">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>1F.潮流服饰</h2>
+				<div class="separator-2"></div>
+
+				<!-- isotope filters start -->
+				<div class="filters margin-bottom-clear">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#" data-filter="*">All</a></li>
+						<li><a href="#" data-filter=".web-design">Web design</a></li>
+						<li><a href="#" data-filter=".app-development">App
+								development</a></li>
+						<li><a href="#" data-filter=".site-building">Site
+								building</a></li>
+					</ul>
+				</div>
+				<!-- isotope filters end -->
+
+				<!-- portfolio items start -->
+				<div class="isotope-container row grid-space-20">
+					#foreach( $item in $map.get("C").getItems() )
+					<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="box-style-1 gray-bg">
+							<div class="overlay-container">
+								<img
+									src="./$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}">
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}" class="overlay small">
+									<i class="fa fa-plus"></i> <span>$!{item.getSubname(36,"..")}</span>
+								</a>
+							</div>
+							<h3>
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.getSubname(36,"..")}</a>
+							</h3>
+						</div>
+					</div>
+					#end
+				</div>
+				<!-- portfolio items end -->
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>2F.手机数码</h2>
+				<div class="separator-2"></div>
+
+				<!-- isotope filters start -->
+				<div class="filters margin-bottom-clear">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#" data-filter="*">All</a></li>
+						<li><a href="#" data-filter=".web-design">Web design</a></li>
+						<li><a href="#" data-filter=".app-development">App
+								development</a></li>
+						<li><a href="#" data-filter=".site-building">Site
+								building</a></li>
+					</ul>
+				</div>
+				<!-- isotope filters end -->
+
+				<!-- portfolio items start -->
+				<div class="isotope-container row grid-space-20">
+					#foreach( $item in $map.get("D").getItems() )
+					<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="box-style-1 gray-bg">
+							<div class="overlay-container">
+								<img
+									src="./$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}">
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}" class="overlay small">
+									<i class="fa fa-plus"></i> <span>$!item.name</span>
+								</a>
+							</div>
+							<h3>
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!item.name</a>
+							</h3>
+						</div>
+					</div>
+					#end
+				</div>
+				<!-- portfolio items end -->
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>3F.美容护肤</h2>
+				<div class="separator-2"></div>
+
+				<!-- isotope filters start -->
+				<div class="filters margin-bottom-clear">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#" data-filter="*">All</a></li>
+						<li><a href="#" data-filter=".web-design">Web design</a></li>
+						<li><a href="#" data-filter=".app-development">App
+								development</a></li>
+						<li><a href="#" data-filter=".site-building">Site
+								building</a></li>
+					</ul>
+				</div>
+				<!-- isotope filters end -->
+
+				<!-- portfolio items start -->
+				<div class="isotope-container row grid-space-20">
+					#foreach( $item in $map.get("E").getItems() )
+					<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="box-style-1 gray-bg">
+							<div class="overlay-container">
+								<img
+									src="./$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}">
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}" class="overlay small">
+									<i class="fa fa-plus"></i> <span>$!{item.getSubname(36,"..")}</span>
+								</a>
+							</div>
+							<h3>
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.getSubname(36,"..")}</a>
+							</h3>
+						</div>
+					</div>
+					#end
+				</div>
+				<!-- portfolio items end -->
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>4F.珠宝饰品</h2>
+				<div class="separator-2"></div>
+
+				<!-- isotope filters start -->
+				<div class="filters margin-bottom-clear">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#" data-filter="*">All</a></li>
+						<li><a href="#" data-filter=".web-design">Web design</a></li>
+						<li><a href="#" data-filter=".app-development">App
+								development</a></li>
+						<li><a href="#" data-filter=".site-building">Site
+								building</a></li>
+					</ul>
+				</div>
+				<!-- isotope filters end -->
+
+				<!-- portfolio items start -->
+				<div class="isotope-container row grid-space-20">
+					#foreach( $item in $map.get("F").getItems() )
+					<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="box-style-1 gray-bg">
+							<div class="overlay-container">
+								<img
+									src="./$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}">
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}" class="overlay small">
+									<i class="fa fa-plus"></i> <span>$!{item.getSubname(36,"..")}</span>
+								</a>
+							</div>
+							<h3>
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.getSubname(36,"..")}</a>
+							</h3>
+						</div>
+					</div>
+					#end
+				</div>
+				<!-- portfolio items end -->
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>5F.图书音像</h2>
+				<div class="separator-2"></div>
+
+				<!-- isotope filters start -->
+				<div class="filters margin-bottom-clear">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#" data-filter="*">All</a></li>
+						<li><a href="#" data-filter=".web-design">Web design</a></li>
+						<li><a href="#" data-filter=".app-development">App
+								development</a></li>
+						<li><a href="#" data-filter=".site-building">Site
+								building</a></li>
+					</ul>
+				</div>
+				<!-- isotope filters end -->
+
+				<!-- portfolio items start -->
+				<div class="isotope-container row grid-space-20">
+					#foreach( $item in $map.get("G").getItems() )
+					<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="box-style-1 gray-bg">
+							<div class="overlay-container">
+								<img
+									src="./$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}">
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}" class="overlay small">
+									<i class="fa fa-plus"></i> <span>$!{item.getSubname(36,"..")}</span>
+								</a>
+							</div>
+							<h3>
+								<a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.getSubname(36,"..")}</a>
+							</h3>
+						</div>
+					</div>
+					#end
+				</div>
+				<!-- portfolio items end -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="plugins/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugins/modernizr.js"></script>
+<script type="text/javascript"
+	src="plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript"
+	src="plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="plugins/isotope/isotope.pkgd.min.js"></script>
+<script type="text/javascript"
+	src="plugins/owl-carousel/owl.carousel.js"></script>
+<script type="text/javascript"
+	src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="plugins/jquery.appear.js"></script>
+<script type="text/javascript" src="plugins/jquery.countTo.js"></script>
+<script src="plugins/jquery.parallax-1.1.3.js"></script>
+<script src="plugins/jquery.validate.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
