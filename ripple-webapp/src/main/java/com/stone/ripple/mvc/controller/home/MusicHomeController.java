@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.stone.ripple.bo.SongBo;
 import com.stone.ripple.dal.pojo.music.SongDo;
 import com.stone.ripple.dal.pojo.music.SongDoExample;
+import com.stone.ripple.dao.music.SongDoMapper;
 
 /**
  * 
@@ -29,6 +30,9 @@ public class MusicHomeController {
 	
 	@Autowired
 	private SongBo songBoImpl;
+	
+	@Autowired
+    private SongDoMapper songDoMapper ;
 
 	private static Logger logger = Logger.getLogger(MusicHomeController.class);
 
@@ -53,4 +57,23 @@ public class MusicHomeController {
 	public Object songData(@RequestParam("songId") String songId) {
 		return songBoImpl.selectByPrimaryKey(Long.parseLong(songId));
 	}
+	
+	@RequestMapping(value = "/songData2", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object songData2(@RequestParam("songId") String songId) {
+        return songDoMapper.getSongList(Long.parseLong(songId));
+    }
+	
+	@RequestMapping(value = "/songData3", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object songData3(@RequestParam("songId") String songId) {
+	    SongDo song = new SongDo();
+	    song.setId(Long.parseLong(songId));
+	    song.setStatus("ok");
+	    songDoMapper.updateByPrimaryKeySelective(song);
+	    
+	    SongDoExample example = new SongDoExample();
+	    example.createCriteria().andIdEqualTo(Long.parseLong(songId));
+        return songDoMapper.getSongList2(example);
+    }
 }

@@ -18,5 +18,5 @@
 	<dubbo:reference id="helloFacade" interface="com.stone.ripple.facade.HelloFacade"></dubbo:reference>
 	
 	<dubbo:reference id="validationFacade" interface="com.stone.ripple.facade.ValidationFacade" validation="true"></dubbo:reference>
-	
+	<dubbo:reference id="dataAnalyseFacadeService" interface="com.weidai.clalarm.facade.api.DataAnalyseFacadeService"></dubbo:reference>
 </beans>

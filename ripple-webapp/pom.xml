@@ -7,7 +7,7 @@
 		<artifactId>ripple-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>ripple-webapp</artifactId>
 	<packaging>war</packaging>
 
@@ -82,10 +82,6 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
 		<!-- common end -->
 
 		<dependency>
@@ -145,6 +141,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.weidai.clalarm</groupId>
+			<artifactId>clalarm-common-service-facade</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -253,8 +254,12 @@
 			<groupId>com.weidai</groupId>
 			<artifactId>rocketmq-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>ripple</finalName>
 		<plugins>
@@ -272,13 +277,11 @@
 				<configuration>
 					<warName>ripple</warName>
 					<!--将类文件打成jar包 -->
-					<archiveClasses>false</archiveClasses>
+					<archiveClasses>true</archiveClasses>
 					<!--将资源文件打到classes目录下 -->
 					<webResources>
 						<resource>
 							<directory>src/main/resources</directory>
-							<targetPath>WEB-INF/classes</targetPath>
-							<filtering>true</filtering>
 						</resource>
 					</webResources>
 				</configuration>

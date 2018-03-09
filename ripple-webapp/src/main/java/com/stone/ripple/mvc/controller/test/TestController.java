@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.stone.ripple.facade.model.ValidationParameter;
 import com.stone.ripple.service.HelloFacadeService;
 import com.stone.ripple.service.ValidationFacadeService;
+import com.weidai.zm.norm.rpc.RpcResponse;
 
 /**
  * @description
@@ -29,6 +30,13 @@ public class TestController {
 	public Object test() {
 		return helloFacadeService.test();
 	}
+	
+//	@RequestMapping("/dubbo/hello2")
+//    @ResponseBody
+//    public Object test2() {
+//        RpcResponse<Void> result = helloFacadeService.test2();
+//        return result;
+//    }
 	
 	@RequestMapping("/dubbo/valid/save")
 	@ResponseBody

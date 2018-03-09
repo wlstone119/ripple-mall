@@ -24,7 +24,7 @@ public class DbUtil {
 	// 表示定义数据库的用户名
 	private static String USERNAME = "root";
 	// 定义数据库的密码
-	private static String PASSWORD = "wanglei";
+	private static String PASSWORD = "root";
 	// 定义数据库的驱动信息
 	private static String DRIVER = "com.mysql.jdbc.Driver";
 	// 定义访问数据库的地址

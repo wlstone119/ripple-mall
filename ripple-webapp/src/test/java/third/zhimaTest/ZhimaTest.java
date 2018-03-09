@@ -73,9 +73,9 @@ public class ZhimaTest {
         bizParams.put("auth_code", "M_H5");
         request.setBizParams(JSON.toJSONString(bizParams));
         Map<String, String> identityParamMap = new HashMap<String, String>();
-        identityParamMap.put("certNo", "******************");
+        identityParamMap.put("certNo", "432401197405217016");
         identityParamMap.put("certType", "IDENTITY_CARD");
-        identityParamMap.put("name", "***");
+        identityParamMap.put("name", "宋建军");
         request.setIdentityParam(JSON.toJSONString(identityParamMap));
         DefaultZhimaClient client = getClient(appKey);
         try {
@@ -183,7 +183,7 @@ public class ZhimaTest {
     }
 
     public static void main(String[] args) {
-        System.out.println(Long.MIN_VALUE + "--" + Long.MAX_VALUE + "--" + Long.parseLong("111111111111111111"));
+        //System.out.println(Long.MIN_VALUE + "--" + Long.MAX_VALUE + "--" + Long.parseLong("111111111111111111"));
         System.out.println(JSON.toJSONString(link("f9930807305e503a76cc588d0ee42932")) + "\n");
         // System.out.println(JSON.toJSONString(score("37d4d13b8ccec48fe0dd3c53099e7bee")) + "\n");
         // System.out.println(JSON.toJSONString(score("03738b7660992b7ae0df860782cdbf48")) + "\n");

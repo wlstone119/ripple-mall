@@ -29,7 +29,7 @@
 			$("#crawl").attr("disabled", true);
 			var webroot = $("#webroot").val();
 			$.ajax({
-				url : "/ripple/controller/crawl.m",
+				url : "/controller/crawl.m",
 				type : "post",
 				dataType : "json",
 				data : {
