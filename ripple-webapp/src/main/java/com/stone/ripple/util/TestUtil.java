@@ -11,5 +11,4 @@ public class TestUtil {
     public void setName(String name) {
         this.name = name;
     }
-
 }
