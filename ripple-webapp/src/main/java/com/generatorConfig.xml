@@ -9,7 +9,7 @@
 		</context> -->
 	<!-- 数据库驱动包位置 -->
 	<classPathEntry
-		location="/Users/stone/workLib/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
+		location="/Users/stone/workLib/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />
 	<context id="context1">
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -17,20 +17,23 @@
 		</commentGenerator>
 		<!-- 数据库链接URL、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/ripple?useSSL=false" userId="root"
-			password="root" />
+			connectionURL="jdbc:mysql://192.168.16.250:6606/clmg"
+			userId="uatai_robot" password="UATai_robot123!" />
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.stone.ripple.dal.pojo.test"
+		<javaModelGenerator
+			targetPackage="com.stone.ripple.dal.pojo.test"
 			targetProject="ripple/src/main/java" />
 		<!-- 生成的映射文件报名和位置 -->
-		<sqlMapGenerator targetPackage="com.stone.ripple.dal.mapping.test"
+		<sqlMapGenerator
+			targetPackage="com.stone.ripple.dal.mapping.test"
 			targetProject="ripple/src/main/java" />
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator targetPackage="com.stone.ripple.dao.test"
+		<javaClientGenerator
+			targetPackage="com.stone.ripple.dao.test"
 			targetProject="ripple/src/main/java" type="XMLMAPPER" />
 		<!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
-		<table schema="ripple" tableName="test"
-			domainObjectName="TestDo" enableCountByExample="true"
+		<table schema="ai_robot" tableName="baidu_unit_query_record"
+			domainObjectName="BaiduUnitQueryRecordDo" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true">
 		</table>

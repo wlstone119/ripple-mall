@@ -19,7 +19,6 @@ import com.stone.ripple.dal.pojo.music.SongDoExample;
 import com.stone.ripple.dao.music.SongDoMapper;
 
 /**
- * 
  * @description 首页音乐板块
  * @author stone
  * @date 2018年1月16日
@@ -27,53 +26,56 @@ import com.stone.ripple.dao.music.SongDoMapper;
 @Controller
 @RequestMapping(value = "/music")
 public class MusicHomeController {
-	
-	@Autowired
-	private SongBo songBoImpl;
-	
-	@Autowired
-    private SongDoMapper songDoMapper ;
 
-	private static Logger logger = Logger.getLogger(MusicHomeController.class);
+    @Autowired
+    private SongBo        songBoImpl;
 
-	@RequestMapping(value = "/home", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public ModelAndView pageInit() {
-		SongDoExample example = new SongDoExample();
-		example.createCriteria().andIdGreaterThan(1L).andIdLessThan(20L);
-		List<SongDo> songList = songBoImpl.selectByExample(example);
-		
-		Map<String, List<SongDo>> modelMap = new HashMap<String, List<SongDo>>();
-		modelMap.put("songs", songList);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("music-home");
-		mav.addAllObjects(modelMap);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/songData", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Object songData(@RequestParam("songId") String songId) {
-		return songBoImpl.selectByPrimaryKey(Long.parseLong(songId));
-	}
-	
-	@RequestMapping(value = "/songData2", method = { RequestMethod.GET, RequestMethod.POST })
+    @Autowired
+    private SongDoMapper  songDoMapper;
+
+    private static Logger logger = Logger.getLogger(MusicHomeController.class);
+
+    @RequestMapping(value = "/home", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public ModelAndView pageInit(int pageNo, int pageSize) {
+        SongDoExample example = new SongDoExample();
+        Long startId = Long.parseLong(String.valueOf((pageNo - 1) * pageSize));
+        Long endId = Long.parseLong(String.valueOf((pageNo * pageSize)));
+        example.createCriteria().andIdGreaterThan(startId).andIdLessThan(endId);
+
+        List<SongDo> songList = songBoImpl.selectByExample(example);
+
+        Map<String, List<SongDo>> modelMap = new HashMap<String, List<SongDo>>();
+        modelMap.put("songs", songList);
+
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("music-home");
+        mav.addAllObjects(modelMap);
+        return mav;
+    }
+
+    @RequestMapping(value = "/songData", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object songData(@RequestParam("songId") String songId) {
+        return songBoImpl.selectByPrimaryKey(Long.parseLong(songId));
+    }
+
+    @RequestMapping(value = "/songData2", method = { RequestMethod.GET, RequestMethod.POST })
     @ResponseBody
     public Object songData2(@RequestParam("songId") String songId) {
         return songDoMapper.getSongList(Long.parseLong(songId));
     }
-	
-	@RequestMapping(value = "/songData3", method = { RequestMethod.GET, RequestMethod.POST })
+
+    @RequestMapping(value = "/songData3", method = { RequestMethod.GET, RequestMethod.POST })
     @ResponseBody
     public Object songData3(@RequestParam("songId") String songId) {
-	    SongDo song = new SongDo();
-	    song.setId(Long.parseLong(songId));
-	    song.setStatus("ok");
-	    songDoMapper.updateByPrimaryKeySelective(song);
-	    
-	    SongDoExample example = new SongDoExample();
-	    example.createCriteria().andIdEqualTo(Long.parseLong(songId));
+        SongDo song = new SongDo();
+        song.setId(Long.parseLong(songId));
+        song.setStatus("ok");
+        songDoMapper.updateByPrimaryKeySelective(song);
+
+        SongDoExample example = new SongDoExample();
+        example.createCriteria().andIdEqualTo(Long.parseLong(songId));
         return songDoMapper.getSongList2(example);
     }
 }

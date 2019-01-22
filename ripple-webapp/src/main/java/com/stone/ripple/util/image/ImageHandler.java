@@ -24,7 +24,7 @@ public class ImageHandler {
 	private static Logger logger = LoggerFactory.getLogger(ImageHandler.class);
 
 	public static void main(String[] args) throws Exception {
-		writeWaterImage("D:/wanglei1.png", "D:/wanglei3.jpg", "我是水印");
+		writeWaterImage("/Users/stone/Downloads/wanglei.PNG", "/Users/stone/Downloads/wanglei2.JPG", null);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ImageHandler {
 	 */
 	public static void writeBlurImage(String oldFile, String outFilePath, int ambiguity, String watermark)
 			throws Exception {
-		ByteArrayOutputStream outputStream = handleImageStream(oldFile, true, 0, 0, true, ambiguity, watermark);
+		ByteArrayOutputStream outputStream = handleImageStream(oldFile, true, 0, 0, false, ambiguity, watermark);
 		writeImage(outputStream, outFilePath);
 	}
 

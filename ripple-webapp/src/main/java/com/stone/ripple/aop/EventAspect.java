@@ -2,6 +2,8 @@ package com.stone.ripple.aop;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -15,10 +17,13 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import com.stone.ripple.dal.pojo.music.SongDoExample;
+import com.stone.ripple.mvc.controller.home.MusicHomeController;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class EventAspect {
+    
+    private static Logger logger = Logger.getLogger(EventAspect.class);
 
     private final String execution1 = "execution(* com.stone.lava.dao.*.*(..))";
     private final String execution2 = "execution(* com.stone.ripple.dao.music.SongDoMapper.getSongList2(com.stone.ripple.dal.pojo.music.SongDoExample) )";
@@ -29,70 +34,79 @@ public class EventAspect {
 
     @Around("pointCut()")
     public Object process(ProceedingJoinPoint point) throws Throwable {
-        System.out.println("@Around：开始执行前...");
+        logger.info("@Around：开始执行前...");
         // 访问目标方法的参数：
         Object[] args = point.getArgs();
         // 用改变后的参数执行目标方法
         Object returnValue = point.proceed(args);
-        System.out.println("@Around：目标方法执行完成后...");
-        System.out.println("@Around：被织入的目标对象为：" + point.getTarget());
+        logger.info("@Around：目标方法执行完成后...");
+        logger.info("@Around：被织入的目标对象为：" + point.getTarget());
         return returnValue;
     }
 
     @Before("pointCut()")
     public void check(JoinPoint point) throws ClassNotFoundException {
         try{
-            System.out.println("@Before：方法执行前检查...");
+            logger.info("@Before：方法执行前检查...");
             Signature signature = point.getSignature();
             MethodSignature methodSignature = (MethodSignature) signature;
             Method method = methodSignature.getMethod();
             String methodName = method.getDeclaringClass().getName() + "." + method.getName();
-            System.out.println("@Before：切入目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
+            logger.info("@Before：切入目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
                                + point.getSignature().getName());
 
             if (1 == 1) {
                 throw new RuntimeException("123");
             }
-            System.out.println(method.getParameterTypes()[0].getTypeName());
+            logger.info(method.getParameterTypes()[0].getName());
             if ("com.stone.ripple.dao.music.SongDoMapper.getSongList2".equals(methodName)) {
-                System.out.println("===============");
+                logger.info("===============");
             } else {
                 return;
             }
 
-            System.out.println("com.stone.ripple.dal.".equals(method.getParameterTypes()[0].getTypeName()));
+            logger.info("com.stone.ripple.dal.".equals(method.getParameterTypes()[0].getName()));
 
             if ("com.stone.ripple.dal.pojo.music.SongDoExample".equals(point.getArgs()[0])) {
-                System.out.println("===============");
+                logger.info("===============");
             }
-            System.out.println("@Before：参数为：" + Arrays.toString(point.getArgs()));
-            System.out.println("@Before：被织入的目标对象为：" + point.getTarget());
+            logger.info("@Before：参数为：" + Arrays.toString(point.getArgs()));
+            logger.info("@Before：被织入的目标对象为：" + point.getTarget());
         }catch(Exception e){
-            System.out.println("================---");
+            logger.info("================---");
         }
     }
 
     @AfterReturning(pointcut = "pointCut()", returning = "returnValue")
     public void returning(JoinPoint point, Object returnValue) {
-        System.out.println("@AfterReturning：模拟日志记录功能...");
-        System.out.println("@AfterReturning：目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
+        logger.info("@AfterReturning：模拟日志记录功能...");
+        logger.info("@AfterReturning：目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
                            + point.getSignature().getName());
-        System.out.println("@AfterReturning：参数为：" + Arrays.toString(point.getArgs()));
-        System.out.println("@AfterReturning：返回值为：" + returnValue);
-        System.out.println("@AfterReturning：被织入的目标对象为：" + point.getTarget());
+        logger.info("@AfterReturning：参数为：" + Arrays.toString(point.getArgs()));
+        logger.info("@AfterReturning：返回值为：" + returnValue);
+        logger.info("@AfterReturning：被织入的目标对象为：" + point.getTarget());
     }
 
     @After("pointCut()")
     public void releaseResource(JoinPoint point) {
-        System.out.println("@After：模拟释放资源...");
-        System.out.println("@After：目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
+        logger.info("@After：模拟释放资源...");
+        logger.info("@After：目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
                            + point.getSignature().getName());
-        System.out.println("@After：参数为：" + Arrays.toString(point.getArgs()));
-        System.out.println("@After：被织入的目标对象为：" + point.getTarget());
+        logger.info("@After：参数为：" + Arrays.toString(point.getArgs()));
+        logger.info("@After：被织入的目标对象为：" + point.getTarget());
+    }
+    
+    @After("pointCut()")
+    public void releaseResource2(JoinPoint point) {
+        logger.info("@After2：模拟释放资源...");
+        logger.info("@After2：目标方法为：" + point.getSignature().getDeclaringTypeName() + "."
+                           + point.getSignature().getName());
+        logger.info("@After2：参数为：" + Arrays.toString(point.getArgs()));
+        logger.info("@After2：被织入的目标对象为：" + point.getTarget());
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
-        System.out.println(Class.forName("com.stone.lava.pojo.LavaDoExample").isAssignableFrom(Class.forName("com.stone.lava.pojo.LavaDoExample")));
-        System.out.println(Class.forName("com.stone.lava.pojo.LavaDoExample").isAssignableFrom(Class.forName("com.stone.ripple.dal.pojo.music.SongDoExample")));
+        logger.info(Class.forName("com.stone.lava.pojo.LavaDoExample").isAssignableFrom(Class.forName("com.stone.lava.pojo.LavaDoExample")));
+        logger.info(Class.forName("com.stone.lava.pojo.LavaDoExample").isAssignableFrom(Class.forName("com.stone.ripple.dal.pojo.music.SongDoExample")));
     }
 }

@@ -50,7 +50,7 @@
 				<!-- portfolio items start -->
 				<div class="isotope-container row grid-space-20">
 					#foreach( $var in $songs) 
-						<div class="col-sm-4 isotope-item web-design margin-bottom-clear">
+						<div class="col-sm-3 isotope-item web-design margin-bottom-clear">
 							<div class="box-style-1 gray-bg">
 								<div class="overlay-container">
 									<img src="${var.songAlbumPic}" alt="" width=327 height=327 />
@@ -59,7 +59,7 @@
 										<span>${var.songAlbum}</span>
 									</a>
 								</div>
-								<h3><a target="_blank" href="${var.songUrl}">${var.name}</a></h3>
+								<h5><a target="_blank" href="${var.songUrl}">${var.name}</a></h5>
 								<p>${var.songSheet}</p>
 								<button class="btn btn-default" onclick="radio(${var.id})">在线收听</button>
 							</div>

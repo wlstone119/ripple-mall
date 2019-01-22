@@ -44,23 +44,23 @@ public class ServletConfig {
         return registration;
     }
     
-    @Bean
-    public ServletRegistrationBean springMvcServlet() {
-    	logger.info("******** tomcat启动时，springMvc servlet开始初始化 *******");
-    	
-    	Map<String, String> initParameters = new HashMap<String,String>();
-    	initParameters.put("contextConfigLocation", "classpath:/spring-mvc.xml");
-    	
-    	ServletRegistrationBean registration = new ServletRegistrationBean();
-    	DispatcherServlet servlet = new DispatcherServlet();
-    	registration.setInitParameters(initParameters);
-    	registration.setLoadOnStartup(1);
-    	registration.setServlet(servlet);
-    	registration.addUrlMappings("*.do");
-    	
-        logger.info("******** tomcat启动时，springMvc servlet初始化完成 *******");
-        return registration;
-    }
+//    @Bean
+//    public ServletRegistrationBean springMvcServlet() {
+//    	logger.info("******** tomcat启动时，springMvc servlet开始初始化 *******");
+//    	
+//    	Map<String, String> initParameters = new HashMap<String,String>();
+//    	initParameters.put("contextConfigLocation", "classpath:/spring-mvc.xml");
+//    	
+//    	ServletRegistrationBean registration = new ServletRegistrationBean();
+//    	DispatcherServlet servlet = new DispatcherServlet();
+//    	registration.setInitParameters(initParameters);
+//    	registration.setLoadOnStartup(1);
+//    	registration.setServlet(servlet);
+//    	registration.addUrlMappings("*.do");
+//    	
+//        logger.info("******** tomcat启动时，springMvc servlet初始化完成 *******");
+//        return registration;
+//    }
     
     @Bean
     public ServletRegistrationBean validateImageServlet() {

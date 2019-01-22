@@ -1,0 +1,62 @@
+db:
+ driverClassName: com.mysql.jdbc.Driver
+ url: jdbc:mysql://localhost:3306/ripple?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+ username: rippledb
+ password: rippledb
+myProps: #自定义的属性和值  
+  simpleProp: simplePropValue  
+  arrayProps: 1,2,3,4,5  
+  listProp1:  
+    - name: abc  
+      value: abcValue  
+    - name: efg  
+      value: efgValue  
+  listProp2:  
+    - config2Value1  
+    - config2Vavlue2  
+  mapProps:  
+    key1: value1  
+    key2: value2
+spring:
+ dubbo:
+  application:
+   name: ripple
+  registry:
+   server: zkRegistry
+   protocol: zookeeper
+   address: 172.20.100.119:2181
+   file: ${user.home}/.dubbo/1000-ripple.cache
+   cluster: failfast
+  protocol:
+   port: 10000
+   payload: 16777216
+  provider:
+   group:
+   timeout: 25000
+   retries: 0
+   delay: -1
+  consumer:
+   group:
+   timeout: 25000
+   retries: 0
+   check: false
+ redis:
+  host: 172.20.100.119
+  port: 6379
+  password: admin
+  timeout: 6000
+  pool:
+   max-total: 1024
+   max-idle: 500
+   min-idle: 30
+   max-wait-millis: 10000
+   test-on-borrow: true
+   test-on-return: true
+rocketmq:
+    application: RIPPLE
+    nameserver:
+        address : 172.20.100.121:9876
+    group:
+        default : RIPPLE
+    topic:
+        test : TEST_TOPIC_ROCKET_MQ  
